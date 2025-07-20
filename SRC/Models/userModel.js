@@ -1,13 +1,11 @@
 const mongoose = require('mongoose');
-const bcrypt = require('bcrypt'); 
 const bcrypt = require('bcrypt');
 
-
 const userSchema = new mongoose.Schema({
-  nombre: { /* igual que antes */ },
-  email: { /* igual que antes */ },
-  password: { /* igual que antes */ },
-  fechaCreacion: { /* igual que antes */ },
+  nombre: { type: String, required: true },
+  email: { type: String, required: true, unique: true },
+  password: { type: String, required: true },
+  fechaCreacion: { type: Date, default: Date.now },
   rol: {
     type: String,
     enum: ['admin', 'usuario'],
@@ -32,5 +30,5 @@ userSchema.pre('save', async function(next) {
 });
 
 const User = mongoose.model('User', userSchema);
-module.exports = User;
 
+module.exports = User;
