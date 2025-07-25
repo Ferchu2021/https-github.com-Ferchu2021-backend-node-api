@@ -3,7 +3,7 @@ const jwt = require("jsonwebtoken");
 module.exports = (req, res, next) => {
   const authHeader = req.headers.authorization;
 
-  // Verifica que exista el header de autenticación y el token
+  // Verifica formato Bearer y existencia
   if (!authHeader || !authHeader.startsWith("Bearer ")) {
     return res.status(401).json({ error: "No autorizado" });
   }
@@ -15,8 +15,6 @@ module.exports = (req, res, next) => {
     req.user = decoded;
     next();
   } catch (err) {
-    // Devuelve un único mensaje genérico, sin distinción del tipo de error,
-    // para evitar dar pistas a posibles atacantes
     return res.status(401).json({ error: "No autorizado" });
   }
 };

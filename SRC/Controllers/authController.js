@@ -23,13 +23,11 @@ exports.login = async (req, res) => {
   try {
     // Busca el usuario y sanitiza el username
     const user = await User.findOne({ username: username.trim() });
-    if (!user)
-      return res.status(401).json({ error: "Usuario no encontrado" });
+    if (!user) return res.status(401).json({ error: "Usuario no encontrado" });
 
     // Comparación segura de contraseñas
     const valid = await bcrypt.compare(password, user.password);
-    if (!valid)
-      return res.status(401).json({ error: "Contraseña incorrecta" });
+    if (!valid) return res.status(401).json({ error: "Contraseña incorrecta" });
 
     // Genera token JWT
     const token = jwt.sign(
@@ -37,7 +35,6 @@ exports.login = async (req, res) => {
       process.env.JWT_SECRET,
       { expiresIn: "1h" }
     );
-
     res.json({ token });
   } catch (err) {
     res.status(500).json({ error: "Error del servidor" });
@@ -63,7 +60,7 @@ exports.register = async (req, res) => {
   }
 
   try {
-    // Evita registros duplicados por username
+    // Chequea unicidad
     const exists = await User.findOne({ username: username.trim() });
     if (exists) {
       return res
