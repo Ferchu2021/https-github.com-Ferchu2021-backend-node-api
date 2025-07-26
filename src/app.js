@@ -1,4 +1,7 @@
 require("dotenv").config();
+
+const usuariosRoutes = require('src/routes/usuarios');
+
 const express = require("express");
 const cors = require("cors");
 const mongoose = require("mongoose");
@@ -22,6 +25,7 @@ app.use(morgan("dev")); // Logging HTTP para desarrollo
 // Rutas
 app.use("/api/auth", authRoutes);
 app.use("/api/data", dataRoutes);
+app.use('/api/usuarios', usuariosRoutes);
 
 // Ruta de prueba
 app.get('/', (req, res) => {
