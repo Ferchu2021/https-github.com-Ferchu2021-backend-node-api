@@ -1,0 +1,86 @@
+MCGA:
+Estructura Básica del Proyecto
+El frontend sigue una arquitectura común de aplicaciones React modernas:
+
+src/:
+
+main.jsx — Punto de entrada principal de la aplicación React.
+
+App.jsx — Componente raíz, encargado del layout general y de definir las rutas.
+
+components/ — Componentes reutilizables (Navbar, formularios, modales, etc).
+
+pages/ — Vistas principales: página pública, login, panel privado (CRUD).
+
+package.json — Definición de dependencias y scripts de desarrollo y construcción.
+
+Este proyecto es una aplicación web full stack compuesta por un frontend desarrollado en React (usando Vite) y un backend utilizando Node.js y Express, con base de datos MongoDB en la nube. El objetivo es gestionar usuarios y datos, implementando autenticación segura mediante JWT y funcionalidades completas de CRUD (Crear, Leer, Actualizar y Eliminar) que impactan sobre la visualización pública de datos.
+
+Tecnologías y Herramientas Utilizadas
+Frontend:
+
+React (Vite)
+
+React Router DOM para el manejo de rutas
+
+Flexbox para maquetado
+
+Validación de formularios recomendada con Joi, React Hook Form
+
+Firebase (opcional para autenticación/JWT)
+
+Despliegue recomendado en Vercel
+
+Backend:
+
+Node.js y Express
+
+MongoDB Atlas
+
+Mongoose para modelado de datos
+
+JWT (jsonwebtoken) para autenticación segura
+
+Joi para validación de datos del lado del backend
+
+CORS, dotenv
+
+Base de datos: MCGAFINAL
+URL: mongodb://atlas-sql-68853f25b8924748e5b7f0a6-2i2xwp.a.query.mongodb.net/MCGAFINAL?ssl=true&authSource=admin
+
+Mongoose:
+mongodb://atlas-sql-6873287de9b9187b1f543441-blma1x.a.query.mongodb.net/miappdb?ssl=true&authSource=admin
+
+Vercel:
+https://vercel.com/fernandas-projects-88d7bceb/backend-mcga/deployments?environment=preview
+
+Dependencias principales registradas:
+
+Backend: bcrypt, cors, dotenv, express, jsonwebtoken, mongoose
+
+Frontend: react, react-dom, react-router-dom, vite
+
+Funcionalidad Requerida y Flujo
+Ruta pública: muestra datos accedidos desde el backend.
+
+Ruta de login: permite inicio de sesión validando usuario y contraseña.
+
+Ruta privada: sólo accesible si hay sesión activa; aquí el usuario puede realizar un CRUD sobre los datos.
+
+Logout: disponible desde el frontend para cerrar sesión y redirigir automáticamente al home.
+
+CRUD completo: alta, modificación, baja lógica/física y consulta de datos, todo sincronizado con la base real.
+
+Al intentar entrar a la ruta privada sin autenticación, el sistema debe redirigir a login o mostrar un acceso denegado.
+
+Confirmación modal antes de eliminar cualquier dato.
+
+Aspectos destacados de la implementación:
+
+Mensaje personalizado: El texto mostrado varía si detecta términos como "network" o "unauthorized" en el mensaje del error.
+
+Botón de "Reintentar": Permite al usuario recargar la app si se presenta un fallo.
+
+Detalles técnicos solo en desarrollo: Los mensajes y stacktrace de error solo se muestran si process.env.NODE_ENV === "development", lo que protege información sensible en producción.
+
+Cierre y exportación correcta: El método render y la clase quedan correctamente cerrados y exportados.
