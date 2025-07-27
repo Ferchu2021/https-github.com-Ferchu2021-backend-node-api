@@ -1,7 +1,7 @@
 const express = require('express');
 const router = express.Router();
-// Importa el modelo de Usuario de Mongoose (ajusta la ruta según tu estructura)
-const Usuario = require('../models/Usuario');
+// Importa el modelo de Usuario (ajusta la ruta a minúsculas y relativa)
+const Usuario = require('../models/usuario');
 
 /**
  * GET /api/usuarios
@@ -91,3 +91,4 @@ router.get('/salud', (req, res) => {
 });
 
 module.exports = router;
+

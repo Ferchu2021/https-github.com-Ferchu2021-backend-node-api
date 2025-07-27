@@ -1,9 +1,9 @@
 const mongoose = require('mongoose');
 const bcrypt = require('bcrypt');
 
-const userSchema = new mongoose.Schema({
-  username: { type: String, required: true, unique: true },
-  email: { type: String, required: true, unique: true },
+const usuarioSchema = new mongoose.Schema({
+  nombre:   { type: String, required: true, unique: true },
+  email:    { type: String, required: true, unique: true },
   password: { type: String, required: true },
   fechaCreacion: { type: Date, default: Date.now },
   rol: {
@@ -18,7 +18,7 @@ const userSchema = new mongoose.Schema({
 });
 
 // Hook para hash de contraseña
-userSchema.pre('save', async function(next) {
+usuarioSchema.pre('save', async function(next) {
   if (!this.isModified('password')) return next();
   try {
     const salt = await bcrypt.genSalt(10);
@@ -29,6 +29,4 @@ userSchema.pre('save', async function(next) {
   }
 });
 
-const User = mongoose.model('User', userSchema);
-
-module.exports = mongoose.model('User', userSchema);
+module.exports = mongoose.model('Usuario', usuarioSchema);
