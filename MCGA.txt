@@ -54,6 +54,8 @@ mongodb://atlas-sql-6873287de9b9187b1f543441-blma1x.a.query.mongodb.net/miappdb?
 Vercel:
 https://vercel.com/fernandas-projects-88d7bceb/backend-mcga/deployments?environment=preview
 
+Render: https://mcga-backend.onrender.com
+
 Dependencias principales registradas:
 
 Backend: bcrypt, cors, dotenv, express, jsonwebtoken, mongoose
